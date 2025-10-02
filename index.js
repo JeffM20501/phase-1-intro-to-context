@@ -9,18 +9,10 @@ function createEmployeeRecord([firstName, familyName, title, payPerHour]){
         timeOutEvents:[]}
 }
 
-const empo = createEmployeeRecord(['jeff', 'Muna', 'Hr', 20])
-const empo4=createEmployeeRecords([['jeff', 'Muna', 'Hr', 20], ['Jack', 'Mainia', 'Hr', 20]])
-const empo2 = createTimeInEvent(createEmployeeRecord(['jeff', 'Muna', 'Hr', 20]), "2025-10-20 1300")
-const empo3 = createTimeOutEvent(empo2, "2025-10-20 1900")
-// console.log(createEmployeeRecord(['jeff', 'Muna', 'Hr', 20]))
-
 function createEmployeeRecords(arr){
     let newArr =arr.map(item=>createEmployeeRecord(item))
     return newArr
 }
-
-// console.log(createEmployeeRecords([['jeff', 'Muna', 'Hr', 20], ['Jack', 'Mainia', 'Hr', 20]]))
 
 function createTimeInEvent(obj, dateStamp){
     const [date,  hour] = dateStamp.split(' ')
@@ -29,11 +21,8 @@ function createTimeInEvent(obj, dateStamp){
         hour: parseInt(hour, 10),
         date: date
     })
-
     return obj
 }
-
-// console.log(createTimeInEvent(createEmployeeRecord(['jeff', 'Muna', 'Hr', 20]), "2025-10-20 1300"))
 
 function createTimeOutEvent(obj, dateStamp){
     const [date, hour] = dateStamp.split(' ')
@@ -51,8 +40,6 @@ function hoursWorkedOnDate(obj, dateStamp){
     const timeOut = obj.timeOutEvents.find(event=>event.date===date)
     return (timeOut.hour-timeIn.hour)/100
 }
-
-// console.log(hoursWorkedOnDate(empo3, '2025-10-20 1300'))
 
 function wagesEarnedOnDate(obj, dateStamp){
     const payOwned = hoursWorkedOnDate(obj, dateStamp)*obj.payPerHour
@@ -76,6 +63,4 @@ function calculatePayroll(arr){
     }
     return payRoll
 }
-// console.log(empo4)
 
-console.log(calculatePayroll(empo4))
